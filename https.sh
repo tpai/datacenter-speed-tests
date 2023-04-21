@@ -18,7 +18,7 @@ done
 
 get_name() {
     domains='{ "speedtestwe": "West Europe", "speedtestsea": "Southeast Asia", "speedtestea": "East Asia", "speedtestnsus": "North Central US", "speedtestne": "North Europe", "speedtestscus": "South Central US", "speedtestwus": "West US", "speedtesteus": "East US", "speedtestjpe": "Japan East", "speedtestjpw": "Japan West", "speedtestcus": "Central US", "speedtesteus2": "East US 2", "speedtestozse": "Australia Southeast", "speedtestoze": "Australia East", "speedtestukw": "West UK", "speedtestuks": "South UK", "speedtestcac": "Canada Central", "speedtestcae": "Canada East", "speedtestwestus2": "West US 2", "speedtestwestindia": "West India", "speedtesteastindia": "South India", "speedtestcentralindia": "Central India", "speedtestkoreacentral": "Korea Central", "speedtestkoreasouth": "Korea South", "speedtestwestcentralus": "West Central US", "speedtestfrc": "France Central", "speedtestsan": "South Africa North", "speedtestuaen": "UAE North", "speedtestden": "Germany North", "speedtestchn": "Switzerland North", "speedtestchw": "Switzerland West", "azspeednoeast": "Norway East", "speedtestnea": "Brazil", "speedtestesc": "Sweden Central", "azurespeedtestwestus3": "West US 3", "speedtestqc": "Qatar Central", "speedtestplc": "Poland Central" }'
-    echo $domains | jq -r ".$1"
+    echo "$domains" | grep -Eo "\"$1\":\s*\"[^\"]+\"" | awk -F ': ' '{print $2}' | tr -d '"'
 }
 
 printf "\n\nAzure HTTPS Ping Test:\n\n"
